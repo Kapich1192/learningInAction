@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
     /*================================================= FIELDS =======================================================*/
     private String pageTemplate = "pages/login/home";
+    private String title = "School21 online";
     /*================================================= GET ==========================================================*/
     @GetMapping("/")
     public String getHome(Model model) {
+        model.addAttribute("title",title);
         return pageTemplate;
     }
     /*================================================= POST =========================================================*/
@@ -24,14 +26,12 @@ public class HomeController {
                           @RequestParam String tel,
                           @RequestParam String email,
                           Model model) {
-
         System.out.println(login);
         System.out.println(password);
         System.out.println(name);
         System.out.println(lastname);
         System.out.println(tel);
         System.out.println(email);
-        model.addAttribute("mes","Registration on locking");
         return "redirect:/";
     }
 }
