@@ -1,5 +1,8 @@
 package com.learningInAction.controllers.login.home;
 
+import com.learningInAction.model.user.User;
+import com.learningInAction.repo.user.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +14,8 @@ public class HomeController {
     /*================================================= FIELDS =======================================================*/
     private String pageTemplate = "pages/login/home";
     private String title = "School21 online";
+    @Autowired
+    UserRepo userRepo;
     /*================================================= GET ==========================================================*/
     @GetMapping("/")
     public String getHome(Model model) {
@@ -32,6 +37,8 @@ public class HomeController {
         System.out.println(lastname);
         System.out.println(tel);
         System.out.println(email);
+        User regUser = new User(login,password,name,lastname,tel,email);
+        userRepo.save(regUser);
         return "redirect:/";
     }
 }
