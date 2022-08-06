@@ -19,6 +19,7 @@ public class User {
     private String lastname;
     private String tel;
     private String email;
+    private boolean active ;
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
@@ -47,7 +48,7 @@ public class User {
     public String getTel() { return tel; }
     public String getEmail() { return email; }
     public Set<Role> getRole() { return role; }
-
+    public boolean getActive() { return active; }
     /*================================================= SETTERS ======================================================*/
 
     public void setId(Long id) { this.id = id; }
@@ -58,7 +59,7 @@ public class User {
     public void setTel(String tel) { this.tel = tel; }
     public void setEmail(String email) { this.email = email; }
     public void setRole(Set<Role> role) { this.role = role; }
-
+    public void setActive(boolean active) { this.active = active; }
     /*================================================= SYSTEM =======================================================*/
     /*================================================= METHODS ======================================================*/
 }

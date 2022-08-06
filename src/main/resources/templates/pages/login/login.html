@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -33,7 +34,53 @@
     </div>
 </header>
 <!-- Content -->
+<!-- Form -->
+<br>
+<br>
+<br>
+<br>
+<section id="reg">
+    <div class="container col-xl-10 col-xxl-8 px-4 py-5 bg-dark opacity-75 rounded-5 text-light">
+        <div class="row align-items-center g-lg-5 py-5">
+            <div class="col-lg-7 text-center text-lg-start">
+                <h1 class="display-4 fw-bold lh-1 mb-3">
+                    Login
+                </h1>
+                <div class="col-lg-10 fs-4">
+                    <div th:if="${param.error}">
+                        Invalid username and password.
+                    </div>
+                    <div th:if="${param.logout}">
+                        You have been logged out.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10 mx-auto col-lg-5">
+                <form class="p-4 p-md-5 border rounded-5 " th:action="@{/login}" method="post">
 
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="username" id="login" placeholder="login">
+                        <label for="login">Login</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" name="password" id="password"
+                               placeholder="Password">
+                        <label for="password">Password</label>
+                    </div>
+
+                    <button class="w-100 btn btn-lg btn-success" type="submit">Login</button>
+                    <hr class="my-4">
+                    <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+<br>
+<br>
+<br>
 <!-- Footer -->
 <footer class="container-fluid bg-dark opacity-75">
     <div class="row">
