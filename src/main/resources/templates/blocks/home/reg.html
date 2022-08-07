@@ -1,0 +1,54 @@
+<!-- Registration form -->
+<div th:fragment="reg">
+    <div class="container col-xl-10 col-xxl-8 px-4 py-5 bg-dark opacity-75 rounded-5 text-light">
+        <div class="row align-items-center g-lg-5 py-5">
+            <div class="col-lg-7 text-center text-lg-start">
+                <h1 class="display-4 fw-bold lh-1 mb-3">Vertically centered hero sign-up form</h1>
+                <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls.
+                    Each required form group has a validation state that can be triggered by attempting to submit
+                    the form without completing it.</p>
+            </div>
+            <div class="col-md-10 mx-auto col-lg-5">
+                <form class="p-4 p-md-5 border rounded-5 " action="/" method="post">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="lastname" id="lastname"
+                               placeholder="lastname">
+                        <label for="lastname">Lastname</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="name">
+                        <label for="name">Name</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="username" id="login" placeholder="login">
+                        <label for="login">Login</label>
+                    </div>
+
+
+                    <div class="form-floating mb-3">
+                        <input type="tel" class="form-control" name="tel" id="tel" placeholder="+7 (966) 999 99 99">
+                        <label for="tel">Tel:</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" name="email" id="email"
+                               placeholder="name@example.com">
+                        <label for="email">Email address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" name="password" id="password"
+                               placeholder="Password">
+                        <label for="password">Password</label>
+                    </div>
+
+                    <button class="w-100 btn btn-lg btn-success" type="submit">I want learn!</button>
+                    <hr class="my-4">
+                    <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
