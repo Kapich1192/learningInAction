@@ -13,7 +13,54 @@
 <!-- Menu -->
 <div th:insert="blocks/header/header :: header" class="sticky-top"></div>
 <!-- Content -->
+<section>
+    <div class="container-fluid">
 
+            <div class="row ">
+                <div class="col-6 border rounded-5 shadow-lg mt-3 ms-3 me-3 mb-3">
+                    <h3 class="ms-3 mt-3">[[${usr.name}]] [[${usr.lastname}]]</h3>
+                    <img src="img/users/unknown.png" height="150px" class="rounded-5">
+                    <p class="mt-2">Tel: [[${usr.tel}]]</p>
+                    <p class="me-2">Email: [[${usr.email}]]</p>
+                    <h6>Level 1</h6>
+                    <p>Java Developer</p>
+                    <p>Exp: 359</p>
+                </div>
+
+                <div class="container col-5 rounded-5 shadow-lg border mt-3 ms-3 me-3 mb-3">
+                    <h3 class="ms-3 mt-3">События</h3>
+                    <div class="border" style="height: 250px;">
+                    </div>
+                </div>
+
+            </div>
+    </div>
+</section>
+
+<section>
+    <div class="container-fluid">
+
+        <div class="row ">
+            <div class="col-6 border rounded-5 shadow-lg mt-3 ms-3 me-3 mb-3">
+                <h3 class="ms-3 mt-3">Current project</h3>
+                <img src="img/users/unknown.png" height="150px" class="rounded-5">
+                <p class="mt-2">Tel: [[${usr.tel}]]</p>
+                <p class="me-2">Email: [[${usr.email}]]</p>
+                <h6>Level 1</h6>
+                <p>Java Developer</p>
+                <p>Exp: 359</p>
+            </div>
+
+            <div class="container col-5 rounded-5 shadow-lg border mt-3 ms-3 me-3 mb-3">
+                <h3 class="ms-3 mt-3">Current lecture: </h3>
+                <p></p>
+                <div class="border" style="height: 250px;">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 <!-- Footer -->
 <footer th:insert="blocks/footer/footer :: footer"></footer>
 <!-- JavaScript Bundle with Popper -->
