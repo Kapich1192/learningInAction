@@ -38,16 +38,4 @@ public class DashboardController {
         return "pages/dashboard/dashboard";
     }
     /*================================================= POST =========================================================*/
-    @PostMapping("admin/add_news")
-    public String postAddNews(@RequestParam String title,
-                              @RequestParam String anons,
-                              @RequestParam File bodyNews) {
-
-        News news = new News();
-        news.setTitle(title);
-        news.setAnons(anons);
-        news.setBodyNews(bodyNews.getName());
-        newsRepo.save(news);
-        return "pages/news/add_news";
-    }
 }

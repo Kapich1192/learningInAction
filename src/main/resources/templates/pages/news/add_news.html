@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+    <!-- CSS only -->
+   <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<style>
+
+$position-values: {
+  0: 0,
+  10:10%,
+  25: 25%,
+  50: 25%,
+  100: 100%;
+  }
+</style>
+
+</head>
+<body>
+<!-- Menu -->
+<div th:insert="blocks/header/header :: header" class="sticky-top"></div>
+<!-- Admin panel-->
+<div th:insert="blocks/admin/admin_panel :: admin_panel" class="sticky-top top-100" style="margin-left: 30px;"></div>
+
+<!-- Content -->
+<section>
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2>Добавление Новости</h2>
+        </div>
+    </div>
+    <div class="container mb-5">
+        <div class="row g-5">
+            <!-- News List-->
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 order-md-last">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-success">News List</span>
+                    <span class="badge bg-success rounded-pill">3</span>
+                </h4>
+                <ul class="list-group mb-3">
+
+                    <li class="list-group-item d-flex justify-content-between lh-sm" th:each="news : ${news}">
+                        <div>
+                            <h6 class="my-0" th:text="${news.title}"></h6>
+                            <small class="text-muted" th:text="${news.anons}"></small>
+                        </div>
+                        <a th:href="'/admin/update_news_' + ${news.id}" class="text-muted" style="text-decoration: none;">Update</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Add User form -->
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3">Add News</h4>
+                <form class="needs-validation" novalidate="" action="/admin/add_news" method="post">
+                    <div class="row g-3">
+
+
+                        <div class="col-12">
+                            <label for="title" class="form-label">Title news <span
+                                    class="text-muted">(Optional)</span></label>
+                            <input type="text" class="form-control" name="title" id="title" placeholder="Title">
+                            <div class="invalid-feedback">
+                                Please enter a valid email address for shipping updates.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="anons" class="form-label">Anons</label>
+                            <input type="text" class="form-control" name="anons" id="anons" placeholder="Anons" required="">
+                            <div class="invalid-feedback">
+                                Please enter your shipping tel.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="tag" class="form-label">Tag</label>
+                            <input type="text" class="form-control" name="tag" id="tag" placeholder="tag" required="">
+                            <div class="invalid-feedback">
+                                Please enter your shipping tel.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="body_news" class="form-label">Body news</label>
+                            <textarea class="form-control" name="body_news" id="body_news" placeholder="Body news" required="" style="height: 250px;"></textarea>
+                            <div class="invalid-feedback">
+                                Please enter your shipping tel.
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <hr class="my-4">
+
+                    <button class="w-100 btn btn-success btn-lg" type="submit">Add news</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer th:insert="blocks/footer/footer :: footer"></footer>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</body>
+</html>

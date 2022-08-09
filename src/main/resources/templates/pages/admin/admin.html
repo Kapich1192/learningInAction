@@ -22,61 +22,7 @@ $position-values: {
 <!-- Menu -->
 <div th:insert="blocks/header/header :: header" class="sticky-top"></div>
 <!-- Admin panel-->
-<div class="sticky-top top-100" style="margin-left: 30px;">
-<a class="btn btn-dark rounded-5 shadow-lg translate-middle opacity-75 text-center "
-   data-bs-toggle="offcanvas"
-   href="#admin_panel"
-   role="button"
-   aria-controls="offcanvasExample"
-    >
-    <p>panel</p>
-</a>
-</div>
-
-
-<div>
-    <div class="offcanvas offcanvas-start bg-dark rounded-start rounded-5"
-         data-bs-scroll="true"
-         data-bs-backdrop="false"
-         tabindex="-1"
-         id="admin_panel"
-         aria-labelledby="offcanvasExampleLabel"
-         style="width: 250px; height: 650px;">
-
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title text-light" id="offcanvasExampleLabel">Admin Panel</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                    aria-label="Закрыть"></button>
-        </div>
-
-        <div class="offcanvas-body">
-            <ul class="nav nav-pills nav-fill">
-                <li class="nav-item btn btn-dark">
-                    <div class="dropdown">
-                        <a class="nav-link link-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            News
-                        </a>
-                        <ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton1" style="width: 120px;">
-                            <li class="nav-item btn btn-dark"><a class="nav-link link-light dropdown-item" href="#">News</a></li>
-                            <li class="nav-item btn btn-dark"><a class="nav-link link-light dropdown-item" href="#">Posts</a></li>
-                            <li class="nav-item btn btn-dark"><a class="nav-link link-light dropdown-item" href="#">Hackatons</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item btn btn-dark">
-                    <a class="nav-link link-light" href="#">Lecture</a>
-                </li>
-                <li class="nav-item btn btn-dark">
-                    <a class="nav-link link-light" href="#">Project</a>
-                </li>
-                <li class="nav-item btn btn-dark">
-                    <a class="nav-link disable link-light" href="#" tabindex="-1"
-                       aria-disabled="true">Algorithmic Tasks</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
+<div th:insert="blocks/admin/admin_panel :: admin_panel" class="sticky-top top-100" style="margin-left: 30px;"></div>
 
 <!-- Content -->
 <section>
