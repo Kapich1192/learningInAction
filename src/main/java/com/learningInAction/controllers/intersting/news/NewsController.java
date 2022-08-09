@@ -1,4 +1,4 @@
-package com.learningInAction.controllers.dashboard;
+package com.learningInAction.controllers.intersting.news;
 
 import com.learningInAction.model.news.News;
 import com.learningInAction.model.user.User;
@@ -10,44 +10,43 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import java.io.File;
+import java.util.ArrayList;
+import java.util.Optional;
 
 @Controller
-public class DashboardController {
+public class NewsController {
     /*================================================= FIELDS =======================================================*/
-    private String title = "Dashboard";
+    private String title = "News";
     @Autowired
     UserRepo userRepo;
     @Autowired
     NewsRepo newsRepo;
     /*================================================= GET ==========================================================*/
-    @GetMapping("/dashboard")
-    public String getDashboard(Model model) {
-        /*+++++ Meta +++++*/
+    /*get all news*/
+    @GetMapping("/news")
+    public String getNews(Model model) {
         model.addAttribute("title", title);
-        /*+++++ User +++++*/
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userRepo.findByUsername(auth.getName());
-        model.addAttribute("usr",user);
-        /*+++++ News +++++*/
+        model.addAttribute("usr", user);
         Iterable<News> news = newsRepo.findAll();
         model.addAttribute("news", news);
-        return "pages/dashboard/dashboard";
+        return "pages/news/news";
+    }
+    /*get single news*/
+    @GetMapping("/news/{id}")
+    public String getSingleNews(@PathVariable(value = "id") Long id, Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepo.findByUsername(auth.getName());
+        model.addAttribute("usr", user);
+
+        Optional<News> news = newsRepo.findById(id);
+        ArrayList<News> res = new ArrayList<>();
+        news.ifPresent(res::add);
+        model.addAttribute("news", res);
+        return "pages/news/single_news";
     }
     /*================================================= POST =========================================================*/
-    @PostMapping("admin/add_news")
-    public String postAddNews(@RequestParam String title,
-                              @RequestParam String anons,
-                              @RequestParam File bodyNews) {
-
-        News news = new News();
-        news.setTitle(title);
-        news.setAnons(anons);
-        news.setBodyNews(bodyNews.getName());
-        newsRepo.save(news);
-        return "pages/news/add_news";
-    }
 }
