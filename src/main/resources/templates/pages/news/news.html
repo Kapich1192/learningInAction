@@ -25,7 +25,7 @@
                                     <p class="card-text">
                                         [[${news.anons}]]
                                     </p>
-                                    <a href="#" class="btn btn-success">К событию</a>
+                                    <a th:href="'/news/'+${news.id}" class="btn btn-success">К событию</a>
                                 </div>
                             </div>
                     </div>
@@ -33,7 +33,8 @@
 
                 <div class="container col-3 rounded-5 shadow-lg border mt-3 ms-3 me-3 mb-3" style="height: 700px;">
                     <h3 class="ms-3 mt-3">События</h3>
-                    <div class="border" style="height: 250px;">
+                    <div>
+                        <p>В модуле события мы рассказываем про развитие сервиса</p>
                     </div>
                 </div>
 

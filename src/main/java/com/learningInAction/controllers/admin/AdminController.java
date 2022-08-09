@@ -1,8 +1,7 @@
-package com.learningInAction.controllers.dashboard;
+package com.learningInAction.controllers.admin;
 
-import com.learningInAction.model.news.News;
+import com.learningInAction.model.user.Role;
 import com.learningInAction.model.user.User;
-import com.learningInAction.repo.news.NewsRepo;
 import com.learningInAction.repo.user.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -13,41 +12,36 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.io.File;
+import java.util.Collections;
+import java.util.Map;
 
 @Controller
-public class DashboardController {
+public class AdminController {
     /*================================================= FIELDS =======================================================*/
-    private String title = "Dashboard";
+    private String title = "Admin Panel";
     @Autowired
     UserRepo userRepo;
-    @Autowired
-    NewsRepo newsRepo;
     /*================================================= GET ==========================================================*/
-    @GetMapping("/dashboard")
-    public String getDashboard(Model model) {
-        /*+++++ Meta +++++*/
-        model.addAttribute("title", title);
-        /*+++++ User +++++*/
+    /*Admin Panel*/
+    @GetMapping("/admin")
+    public String getAdminPanel(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userRepo.findByUsername(auth.getName());
         model.addAttribute("usr",user);
-        /*+++++ News +++++*/
-        Iterable<News> news = newsRepo.findAll();
-        model.addAttribute("news", news);
-        return "pages/dashboard/dashboard";
+        return "pages/admin/admin";
     }
     /*================================================= POST =========================================================*/
-    @PostMapping("admin/add_news")
-    public String postAddNews(@RequestParam String title,
-                              @RequestParam String anons,
-                              @RequestParam File bodyNews) {
+    @PostMapping("/admin")
+    public String postAddNewUser(User user, Map<String, Object> model) {
+        User userFromDb = userRepo.findByUsername(user.getUsername());
 
-        News news = new News();
-        news.setTitle(title);
-        news.setAnons(anons);
-        news.setBodyNews(bodyNews.getName());
-        newsRepo.save(news);
-        return "pages/news/add_news";
+        if (userFromDb != null) {
+            model.put("message", "User exists!");
+            return "redirect:/admin";
+        }
+        user.setActive(true);
+        user.setRole(Collections.singleton(Role.USER));
+        userRepo.save(user);
+        return "redirect:/admin";
     }
 }
