@@ -14,11 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -95,21 +90,22 @@ public class NewsController {
         news.setBodyNews(tag);
         news.setBody(body_news);
         newsRepo.save(news);
-//        Path body = Path.of(System.getProperty("user.dir") + "/src/main/resources/templates/blocks/news/" + tag + ".html");
-//        Path body_file = Files.createFile(body);
-//        BufferedWriter writer = new BufferedWriter(new FileWriter(body_file.toFile()));
-//        writer.write("<div th:fragment=\"" + tag + "\">\n");
-//        writer.write(body_news);
-//        writer.write("\n</div>");
-//        writer.close();
-//        System.out.println(body.toAbsolutePath());
-
-//        System.out.println(title);
-//        System.out.println(anons);
-//        System.out.println(tag);
-//        System.out.println(body_news);
         return "redirect:/admin/add_news";
     }
     /*================================================= UPDATE =======================================================*/
-
+    @PostMapping("/admin/update_news_{id}")
+    public String updateNews(@PathVariable(value = "id") Long id,
+                             @RequestParam String body_news,
+                             @RequestParam String title,
+                             @RequestParam String anons) {
+        Optional<News> news = newsRepo.findById(id);
+        ArrayList<News> res = new ArrayList<>();
+        news.ifPresent(res :: add);
+        News thisNews = res.get(0);
+        thisNews.setBody(body_news);
+        thisNews.setTitle(title);
+        thisNews.setAnons(anons);
+        newsRepo.save(thisNews);
+        return "redirect:/admin/update_news_{id}";
+    }
 }
