@@ -12,33 +12,36 @@
 <body>
 <!-- Menu -->
 <div th:insert="blocks/header/header :: header" class="sticky-top"></div>
+<!-- Admin panel-->
+<div th:insert="blocks/admin/admin_panel :: admin_panel" class="sticky-top top-100" style="margin-left: 30px;"></div>
 <!-- Content -->
 <section style="height: 750px;">
     <div class="container-fluid">
-            <div class="row ">
-                <div class="overflow-auto col-7 border rounded-5 shadow-lg mt-3 ms-3 me-3 mb-3" style="height: 700px;">
-                    <div class="row">
-                            <div class="card col-5 ms-3 mt-3" th:each="news : ${news}">
-                                <img src="img/news/1.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">[[${news.title}]]</h5>
-                                    <p class="card-text">
-                                        [[${news.anons}]]
-                                    </p>
-                                    <a th:href="'/news/'+${news.id}" class="btn btn-success">К событию</a>
-                                </div>
-                            </div>
+        <div class="row ">
+            <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-7 col-xl-7  border border-success border-opacity-50 rounded-5 shadow-lg mt-3 ms-3 me-3 mb-3" style="max-height: 700px; min-height: 300px; overflow-y: scroll;">
+                <div class="row">
+                    <div class="card col-5 ms-3 mt-3 border border-success border-opacity-50" th:each="news : ${news}">
+                        <img src="img/news/1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">[[${news.title}]]</h5>
+                            <hr>
+                            <p class="card-text">
+                                [[${news.anons}]]
+                            </p>
+                            <a th:href="'/news/'+${news.id}" class="btn text-muted border border-success border-opacity-50 rounded-5" style="text-decoration: none;">далее</a>
+                        </div>
                     </div>
                 </div>
-
-                <div class="container col-3 rounded-5 shadow-lg border mt-3 ms-3 me-3 mb-3" style="height: 700px;">
-                    <h3 class="ms-3 mt-3">События</h3>
-                    <div>
-                        <p>В модуле события мы рассказываем про развитие сервиса</p>
-                    </div>
-                </div>
-
             </div>
+
+            <div class="container col-xs-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 rounded-5 shadow-lg border border-success border-opacity-50 mt-3 ms-3 me-3 mb-3" style="max-height: 350px;">
+                <h3 class="ms-3 mt-3 fw-bold">Новости</h3>
+                <div>
+                    <p class="lead">В модуле события мы рассказываем про развитие сервиса и ключевые события.</p>
+                </div>
+            </div>
+
+        </div>
     </div>
 </section>
 

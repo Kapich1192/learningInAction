@@ -39,23 +39,21 @@ $position-values: {
                     <span class="text-success">News List</span>
                     <span class="badge bg-success rounded-pill">3</span>
                 </h4>
-                <ul class="list-group mb-3">
+                <ul class="list-group mb-3 border border-success border-opacity-50 rounded">
 
                     <li class="list-group-item d-flex justify-content-between lh-sm" th:each="news : ${news}">
                         <div>
                             <h6 class="my-0" th:text="${news.title}"></h6>
                             <small class="text-muted" th:text="${news.anons}"></small>
                         </div>
-                        <a th:href="'/admin/update_news_' + ${news.id}" class="text-muted" style="text-decoration: none;">Update</a>
+                        <a th:href="'/admin/update_news_' + ${news.id}" class="btn text-muted border border-success border-opacity-50 rounded-5" style="text-decoration: none;">Update</a>
                     </li>
                 </ul>
             </div>
-            <!-- Add User form -->
-            <div class="col-md-7 col-lg-8">
-                <h4 class="mb-3">Add News</h4>
+            <!-- Add News form -->
+            <div class="col-md-7 col-lg-8 border border-success border-opacity-50 rounded-5 ">
                 <form class="needs-validation" novalidate="" action="/admin/add_news" method="post">
-                    <div class="row g-3">
-
+                    <div class="row g-3 mt-2">
 
                         <div class="col-12">
                             <label for="title" class="form-label">Title news <span
@@ -94,12 +92,13 @@ $position-values: {
 
                     <hr class="my-4">
 
-                    <button class="w-100 btn btn-success btn-lg" type="submit">Add news</button>
+                    <button class="w-100 btn btn-success btn-lg mb-2 rounded-5" type="submit">Add news</button>
                 </form>
             </div>
         </div>
     </div>
 </section>
+
 
 <!-- Footer -->
 <footer th:insert="blocks/footer/footer :: footer"></footer>
